@@ -551,8 +551,13 @@ function Sidebar({ setAuthModalOpen }) {
             </div>
 
             {/* Ad Placeholder */}
-            <div className="bg-gray-200 rounded-lg p-6 h-64 flex items-center justify-center text-gray-500">
+            {/* <div className="bg-gray-200 rounded-lg p-6 h-64 flex items-center justify-center text-gray-500">
                 <span className="text-center">Advertisement<br />(Placeholder for Ads)</span>
+            </div> */}
+
+            <div className="bg-white rounded-lg shadow-lg p-6 text-sm text-gray-600">
+                <h4 className="text-sm font-semibold text-gray-900">Developed By: <a href="https://www.linkedin.com/in/naflan-mohamed" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">Naflan Mohamed</a></h4>
+                
             </div>
         </div>
     );

@@ -1,0 +1,10 @@
+**/node_modules
+
+# Secrets
+/backend/firebase-admin-sdk.json
+/backend/.env
+
+# Vite build files
+/frontend/dist
+/frontend/.env.local
+```

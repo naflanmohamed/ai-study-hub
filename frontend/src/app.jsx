@@ -37,7 +37,7 @@ const db = getFirestore(app);
 
 // --- Constants ---
 const PREMIUM_WORD_LIMIT = 500;
-const BACKEND_API_URL = 'http://localhost:3001/api';
+const BACKEND_API_URL = import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:3001/api';
 
 // --- 1. Authentication Context ---
 // This will provide user data and auth functions to our entire app.

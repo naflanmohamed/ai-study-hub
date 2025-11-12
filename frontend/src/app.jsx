@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext, createContext } from 'react';
 
-// --- Firebase SDK Imports ---
+//  Firebase SDK Imports
 import { initializeApp } from "firebase/app";
 import { 
     getAuth, 
@@ -17,8 +17,7 @@ import {
     onSnapshot 
 } from "firebase/firestore";
 
-// --- !!! PASTE YOUR FIREBASE CONFIG HERE !!! ---
-// This is the same config from your index.html file
+// FIREBASE CONFIG HERE
 const firebaseConfig = {
   apiKey: "AIzaSyD2Z-4HEVQucqrGy3HT2qo4zVkmpqLn4yo",
   authDomain: "ai-study-hub-9eed8.firebaseapp.com",
@@ -27,19 +26,18 @@ const firebaseConfig = {
   messagingSenderId: "299430608985",
   appId: "1:299430608985:web:2e3092afaafcb988a2f148"
 };
-// ---------------------------------------------------------
 
-// --- Initialize Firebase ---
-// We initialize here so all components can use the same instances
+
+// Initialize Firebase 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-// --- Constants ---
+//  Constants 
 const PREMIUM_WORD_LIMIT = 500;
 const BACKEND_API_URL = import.meta.env.VITE_BACKEND_API_URL || 'http://localhost:3001/api';
 
-// --- 1. Authentication Context ---
+//  1. Authentication Context 
 // This will provide user data and auth functions to our entire app.
 // This is the "React" way to handle global state like "who is logged in".
 
@@ -103,7 +101,7 @@ export const AuthProvider = ({ children }) => {
         };
     }, []);
 
-    // --- Auth Functions (Sign up, Login, Logout) ---
+    //  Auth Functions (Sign up, Login, Logout) 
 
     // Helper to create the user's document in Firestore
     const createUserDocument = async (user, premiumStatus) => {
@@ -131,7 +129,7 @@ export const AuthProvider = ({ children }) => {
         await signOut(auth);
     };
 
-    // --- Backend API Functions (Payments & AI) ---
+    //  Backend API Functions (Payments & AI) 
 
     const redirectToCheckout = async () => {
         if (!currentUser) throw new Error("Must be logged in to upgrade.");
@@ -199,7 +197,7 @@ export const AuthProvider = ({ children }) => {
 };
 
 
-// --- 2. Main App Component ---
+//  2. Main App Component 
 // This is the root of our application
 
 export default function App() {
@@ -274,7 +272,7 @@ function AppContent() {
     );
 }
 
-// --- 3. Child Components ---
+//  3. Child Components 
 
 function Header({ setAuthModalOpen }) {
     const { currentUser, isPremium, handleLogout } = useAuth();
@@ -384,7 +382,7 @@ function SummarizerAndHelper({ setAuthModalOpen, setPremiumModalOpen }) {
         setSummaryError('');
 
         const systemPrompt = "You are an expert academic summarizer. Your goal is to provide a concise, clear, and accurate summary of the provided text. Focus on the main ideas, key points, and overall argument. Use clear language. Respond only with the summary.";
-        const userQuery = `Please summarize the following text:\n\n---\n${summaryInput}\n---`;
+        const userQuery = `Please summarize the following text:\n\n\n${summaryInput}\n`;
 
         try {
             const resultText = await callBackendAPI(userQuery, systemPrompt, { isOverLimit });
@@ -560,7 +558,7 @@ function Sidebar({ setAuthModalOpen }) {
     );
 }
 
-// --- 4. Modal Components ---
+//  4. Modal Components 
 
 function AuthModal({ isOpen, setIsOpen }) {
     const { handleLogin, handleSignup } = useAuth();
@@ -692,7 +690,7 @@ function PremiumModal({ isOpen, setIsOpen }) {
     );
 }
 
-// --- 5. Utility Components ---
+//  5. Utility Components 
 
 function LoadingSpinner({ size = 'small' }) {
     const sizeClasses = size === 'large' ? 'w-12 h-12' : 'w-5 h-5';
